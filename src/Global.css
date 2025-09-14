@@ -1,3 +1,5 @@
+@import "tailwindcss";
+
 :root {
   /* Colors */
   --neutral-900: hsl(243, 96%, 9%);
@@ -70,69 +72,21 @@
   --text-preset-8-size: var(--fs-8);
 }
 
-/* Reset */
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-* {
-  margin: 0;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  html {
-    interpolate-size: allow-keywords;
-  }
-}
-
 body {
-  line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
+  font-family: var(--text-base-family);
+  font-size: var(--text-base-size);
+  font-weight: var(--text-base-weight);
+  font-style: var(--text-base-style);
+  line-height: var(--text-base-lh);
+  letter-spacing: var(--text-base-ls);
+  background-color: var(--neutral-900);
+  color: var(--neutral-0);
 }
 
-img,
-picture,
-video,
-canvas,
-svg {
-  display: block;
-  max-width: 100%;
+.wrapper {
+  @apply max-w-[90rem] max-sm:w-11/12 mx-auto;
 }
 
-input,
-button,
-textarea,
-select {
-  font: inherit;
-}
-
-p,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  overflow-wrap: break-word;
-}
-
-p {
-  text-wrap: pretty;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  text-wrap: balance;
-}
-
-*/ #root,
-#__next {
-  isolation: isolate;
+.current-weather-card {
+  @apply bg-[url('./assets/images/bg-today-large.svg')] bg-no-repeat bg-cover;
 }
