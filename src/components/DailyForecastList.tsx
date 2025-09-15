@@ -6,7 +6,7 @@ const DailyForecastList = () => {
       <h4 id="daily-forecast" className="sr-only">
         Daily Forecast
       </h4>
-      <ul className="flex gap-4">
+      <ul className="flex flex-wrap gap-4">
         <li>
           <DailyForecastCard />
         </li>

@@ -1,8 +1,8 @@
 const WeatherDetailsCard = () => {
   // maple
   return (
-    <div>
-      <h4>Feels Like</h4>
+    <div className="rounded-xl card-bg">
+      <h4 className="text-neutral-200">Feels Like</h4>
       <p>
         64 <abbr title="Fahrenheit degrees">(°)</abbr>
       </p>

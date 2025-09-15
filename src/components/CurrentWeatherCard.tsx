@@ -1,6 +1,6 @@
 const CurrentWeatherCard = () => {
   return (
-    <div className="current-weather-card">
+    <div className="custom-bg rounded-[1.5rem]">
       <h3>Berlin, Germany</h3>
       <p>Tuesday, Aug 5, 2025</p>
       <img

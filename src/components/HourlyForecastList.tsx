@@ -2,11 +2,12 @@ import HourlyForecastCard from "./HourlyForecastCard";
 
 const HourlyForecastList = () => {
   return (
-    <section aria-labelledby="hourly-forecast">
-      <div>
-        <h4 id="hourly-forecast" className="sr-only">
-          Hourly Forecast
-        </h4>
+    <section
+      aria-labelledby="hourly-forecast"
+      className="bg-neutral-800 rounded-[1.5rem]"
+    >
+      <div className="flex">
+        <h4 id="hourly-forecast">Hourly Forecast</h4>
         <label htmlFor="days" className="sr-only">
           Select a day to see hourly forecast
         </label>

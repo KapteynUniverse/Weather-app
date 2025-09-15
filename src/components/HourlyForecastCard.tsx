@@ -1,7 +1,7 @@
 const HourlyForecastCard = () => {
   return (
     // h5 yerine time olabilir
-    <div className="flex items-center">
+    <div className="bg-neutral-700 outline-neutral-600 outline-1 flex items-center rounded-lg">
       <img
         src="./assets/images/icon-sunny.webp"
         alt="Sunny"

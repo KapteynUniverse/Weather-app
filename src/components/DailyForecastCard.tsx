@@ -1,6 +1,6 @@
 const DailyForecastCard = () => {
   return (
-    <div>
+    <div className="rounded-xl card-bg">
       <h5>Tue</h5>
       <img
         src="./assets/images/icon-sunny.webp"
@@ -12,7 +12,7 @@ const DailyForecastCard = () => {
         <p aria-label="Temperature">
           68 <abbr title="Fahrenheit degrees">(°)</abbr>
         </p>
-        <p aria-label="Fells Like">
+        <p aria-label="Fells Like" className="text-neutral-200">
           78 <abbr title="Fahrenheit degrees">(°)</abbr>
         </p>
       </div>
