@@ -13,6 +13,9 @@
   --color-blue-500: hsl(233, 67%, 56%);
   --color-blue-700: hsl(248, 70%, 36%);
   /* Fonts Variables */
+  /* Fonts */
+  --font-dm: "DM Sans", sans-serif;
+  --font-bricolage: "Bricolage Grotesque", sans-serif;
   /* Sizes */
   --text-1: 6rem; /* 96px */
   --text-2: 3.25rem; /* 52px */
@@ -24,21 +27,14 @@
   --text-8: 0.875rem; /* 14px */
   /* Letter Spacing */
   --tracking-2: -0.125rem; /* -2px */
-  /* Fonts */
-  --font-dm: "DM Sans", sans-serif;
-  --font-bricolage: "Bricolage Grotesque", sans-serif;
 }
 
 body {
-  @apply text-neutral-0 bg-neutral-900;
+  @apply text-neutral-0 bg-neutral-900 font-dm font-medium leading-[1.2] tracking-normal min-h-screen;
 }
 
 .wrapper {
   @apply max-w-[76rem] w-11/12 mx-auto;
-}
-
-.text-preset-base {
-  @apply font-dm font-medium leading-[1.2] tracking-normal;
 }
 
 .text-preset-1 {
@@ -59,6 +55,10 @@ body {
 
 .text-preset-5 {
   @apply text-5 font-semibold;
+}
+
+.text-preset-5-medium {
+  @apply text-5 font-medium;
 }
 
 .text-preset-6 {

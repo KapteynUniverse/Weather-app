@@ -1,12 +1,12 @@
 const WeatherDetailsCard = () => {
   // maple
   return (
-    <div className="rounded-xl card-bg">
-      <h4 className="text-neutral-200">Feels Like</h4>
-      <p>
+    <article className="rounded-xl card-bg p-5">
+      <h4 className="text-neutral-200 text-preset-6 mb-6">Feels Like</h4>
+      <p className="text-preset-3">
         64 <abbr title="Fahrenheit degrees">(°)</abbr>
       </p>
-    </div>
+    </article>
   );
 };
 

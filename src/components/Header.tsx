@@ -2,11 +2,23 @@ const Header = () => {
   return (
     <header className="mt-[clamp(1rem,0.296rem+3.005vw,3rem)]">
       <div className="wrapper flex justify-between">
-        <a href="#">Weather Now</a>
+        <a href="#">
+          <img
+            src="./assets/images/logo.svg"
+            alt="Home"
+            width={197}
+            height={40}
+          />
+        </a>
         <label htmlFor="units" className="sr-only">
           Select measurement units
         </label>
-        <select name="units" id="units" defaultValue="">
+        <select
+          name="units"
+          id="units"
+          defaultValue=""
+          className="bg-neutral-800 px-[clamp(0.625rem,0.267rem+1.527vw,1rem)] py-[clamp(0.5rem,0.261rem+1.018vw,0.75rem)] rounded-md"
+        >
           <option value="" disabled hidden>
             Units
           </option>
