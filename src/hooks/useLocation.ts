@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useWeatherWithCoords } from "./useWeatherWithCoords";
-import { getLocation } from "../api/Location";
+import { getUserLocation } from "../api/Location";
 
 export function useLocation() {
   const { coords } = useWeatherWithCoords();
@@ -14,7 +14,7 @@ export function useLocation() {
     if (!coords) return;
 
     setLoading(true);
-    getLocation(coords.lat, coords.lon)
+    getUserLocation(coords.lat, coords.lon)
       .then((place) => {
         setPlace(place);
         setError(null);

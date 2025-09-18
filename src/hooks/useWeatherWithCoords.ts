@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getWeather } from "../api/Weather";
+import { getWeatherData } from "../api/Weather";
 import type { apiResponse } from "../types/apiTypes";
 
 export function useWeatherWithCoords() {
@@ -40,7 +40,7 @@ export function useWeatherWithCoords() {
 
       try {
         setLoading(true);
-        const data = await getWeather({ lat: coords.lat, lon: coords.lon });
+        const data = await getWeatherData({ lat: coords.lat, lon: coords.lon });
         if (!cancelled) setWeather(data);
       } catch (err) {
         if (!cancelled) setError((err as Error).message);

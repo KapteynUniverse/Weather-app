@@ -1,33 +1,28 @@
+import type { apiResponse } from "../types/apiTypes";
 import DailyForecastCard from "./DailyForecastCard";
 
-const DailyForecastList = () => {
+type Props = {
+  weather: apiResponse;
+};
+
+const DailyForecastList = ({ weather }: Props) => {
   return (
     <section aria-labelledby="daily-forecast">
       <h4 id="daily-forecast" className="text-preset-5 mb-5">
         Daily Forecast
       </h4>
       <ul className="flex flex-wrap gap-4">
-        <li>
-          <DailyForecastCard />
-        </li>
-        <li>
-          <DailyForecastCard />
-        </li>
-        <li>
-          <DailyForecastCard />
-        </li>
-        <li>
-          <DailyForecastCard />
-        </li>
-        <li>
-          <DailyForecastCard />
-        </li>
-        <li>
-          <DailyForecastCard />
-        </li>
-        <li>
-          <DailyForecastCard />
-        </li>
+        {weather.daily.time.map((t, index) => (
+          <li key={index}>
+            <DailyForecastCard
+              time={t}
+              tempMax={weather.daily.temperature_2m_max[index]}
+              tempMin={weather.daily.temperature_2m_min[index]}
+              code={weather.daily.weather_code[index]}
+              unit={weather.current_units.temperature_2m}
+            />
+          </li>
+        ))}
       </ul>
     </section>
   );

@@ -6,6 +6,10 @@ import WeatherDetailsList from "./WeatherDetailsList";
 import { useWeatherWithCoords } from "../hooks/useWeatherWithCoords";
 import { useLocation } from "../hooks/useLocation";
 
+console.log(
+  "Geolocationa izin verilmediği zaman sitenin gene de yüklenmesi lazım Berlin üzerinden"
+);
+
 const Main = () => {
   const {
     coords,
@@ -19,9 +23,9 @@ const Main = () => {
     error: locationError,
   } = useLocation();
 
-  if (weatherLoading || locationLoading) return <p>Loading...</p>;
   if (weatherError) return <p>{weatherError}</p>;
   if (locationError) return <p>{locationError}</p>;
+  if (weatherLoading || locationLoading) return <p>Loading...</p>;
 
   console.log(coords);
   console.log(weather);
@@ -35,7 +39,7 @@ const Main = () => {
         </h1>
         <section aria-labelledby="forecast">
           <h2 id="forecast" className="sr-only">
-            Forecast of Germany
+            Forecast of {place?.city} in {place?.country}
           </h2>
           <SearchBar />
           <div className="flex flex-col md:flex-row gap-8 justify-center">
@@ -47,12 +51,14 @@ const Main = () => {
                 <h3 id="weather-details" className="sr-only">
                   Weather Details
                 </h3>
-                <CurrentWeatherCard />
-                <WeatherDetailsList />
+                {weather && place && (
+                  <CurrentWeatherCard place={place} weather={weather} />
+                )}
+                {weather && <WeatherDetailsList weather={weather} />}
               </section>
-              <DailyForecastList />
+              {weather && <DailyForecastList weather={weather} />}
             </div>
-            <HourlyForecastList />
+            {weather && <HourlyForecastList weather={weather} />}
           </div>
         </section>
       </div>

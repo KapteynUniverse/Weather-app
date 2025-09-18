@@ -1,4 +1,4 @@
-export async function getLocation(lat: number, lon: number) {
+export async function getUserLocation(lat: number, lon: number) {
   const apiKey = import.meta.env.VITE_API_KEY_LOCATION;
   const baseUrl = import.meta.env.VITE_LOCATION_API;
   const url = `${baseUrl}?q=${lat}+${lon}&key=${apiKey}&no_annotations=1`;
@@ -13,7 +13,6 @@ export async function getLocation(lat: number, lon: number) {
   }
 
   const place = data.results[0].components;
-  console.log(place);
 
   return {
     city: place.province || "",

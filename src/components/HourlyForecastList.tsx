@@ -1,6 +1,29 @@
+import type { apiResponse } from "../types/apiTypes";
 import HourlyForecastCard from "./HourlyForecastCard";
 
-const HourlyForecastList = () => {
+type Props = {
+  weather: apiResponse;
+};
+
+const HourlyForecastList = ({ weather }: Props) => {
+  const now = new Date();
+
+  const todayHourly = weather.hourly.time
+    .map((time, index) => ({
+      time,
+      temp: weather.hourly.temperature_2m[index],
+      code: weather.hourly.weather_code[index],
+    }))
+    .filter(({ time }) => {
+      const hourDate = new Date(time);
+      return (
+        hourDate >= now &&
+        hourDate.getDate() === now.getDate() &&
+        hourDate.getMonth() === now.getMonth() &&
+        hourDate.getFullYear() === now.getFullYear()
+      );
+    });
+
   return (
     <section
       aria-labelledby="hourly-forecast"
@@ -27,31 +50,18 @@ const HourlyForecastList = () => {
           <option value="saturday">Saturday</option>
         </select>
       </div>
+
       <ul className="flex flex-col gap-4">
-        <li>
-          <HourlyForecastCard />
-        </li>
-        <li>
-          <HourlyForecastCard />
-        </li>
-        <li>
-          <HourlyForecastCard />
-        </li>
-        <li>
-          <HourlyForecastCard />
-        </li>
-        <li>
-          <HourlyForecastCard />
-        </li>
-        <li>
-          <HourlyForecastCard />
-        </li>
-        <li>
-          <HourlyForecastCard />
-        </li>
-        <li>
-          <HourlyForecastCard />
-        </li>
+        {todayHourly.map(({ time, temp, code }, index) => (
+          <li key={index}>
+            <HourlyForecastCard
+              time={time}
+              temp={temp}
+              code={code}
+              unit={weather.current_units.temperature_2m}
+            />
+          </li>
+        ))}
       </ul>
     </section>
   );

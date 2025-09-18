@@ -1,10 +1,16 @@
-const WeatherDetailsCard = () => {
+type Props = {
+  title: string;
+  value: number;
+  unit: string;
+};
+
+const WeatherDetailsCard = ({ title, value, unit }: Props) => {
   // maple
   return (
     <article className="rounded-xl card-bg p-5">
-      <h4 className="text-neutral-200 text-preset-6 mb-6">Feels Like</h4>
+      <h4 className="text-neutral-200 text-preset-6 mb-6">{title}</h4>
       <p className="text-preset-3">
-        64 <abbr title="Fahrenheit degrees">(°)</abbr>
+        {value} <abbr title="Fahrenheit degrees">{unit}</abbr>
       </p>
     </article>
   );

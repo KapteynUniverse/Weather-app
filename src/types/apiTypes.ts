@@ -1,4 +1,4 @@
-export type apiProps = {
+export type WeatherApiProps = {
   lon: number;
   lat: number;
   imperial?: boolean;
