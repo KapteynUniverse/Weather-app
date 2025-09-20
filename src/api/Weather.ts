@@ -11,3 +11,12 @@ export async function getWeatherData({ lon, lat, imperial }: WeatherApiProps) {
   if (!res.ok) throw new Error("Failed to fetch weather");
   return res.json();
 }
+
+export async function getLocationWeatherData(city: string) {
+  const baseUrl = import.meta.env.VITE_WEATHER_LOCATION_API;
+  const url = `${baseUrl}?name=${city}&count=1&language=en&format=json`;
+  const res = await fetch(url);
+  if (!res.ok) throw new Error("Failed to fetch location");
+  const data = await res.json();
+  return data.results?.[0];
+}

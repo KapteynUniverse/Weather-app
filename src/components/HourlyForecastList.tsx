@@ -51,7 +51,7 @@ const HourlyForecastList = ({ weather }: Props) => {
         </select>
       </div>
 
-      <ul className="flex flex-col gap-4">
+      <ul className="flex flex-col gap-4 max-h-[43.375rem] overflow-y-scroll">
         {todayHourly.map(({ time, temp, code }, index) => (
           <li key={index}>
             <HourlyForecastCard
