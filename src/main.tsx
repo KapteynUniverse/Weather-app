@@ -1,12 +1,12 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App.tsx";
-import { ForecastProvider } from "./context/ForecastProvider.tsx";
+import { WeatherProvider } from "./context/WeatherProvider.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <ForecastProvider>
+    <WeatherProvider>
       <App />
-    </ForecastProvider>
+    </WeatherProvider>
   </StrictMode>
 );
