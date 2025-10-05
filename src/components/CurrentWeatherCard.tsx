@@ -1,20 +1,19 @@
 import type { apiResponse } from "../types/apiTypes";
+import type { Place } from "../types/contextTypes";
 import { formatDate } from "../utils/formatDate";
 
 type Props = {
-  place: {
-    city: string;
-    country: string;
-  };
+  place: Place;
   weather: apiResponse;
 };
 
 const CurrentWeatherCard = ({ place, weather }: Props) => {
+  console.log(place);
   return (
     <div className="custom-bg rounded-[1.5rem] flex flex-col md:flex-row items-center justify-between px-6 py-20">
       <div className="text-center md:text-left">
         <h3 className="text-preset-4 mb-3">
-          {place?.city}, {place?.country}
+          {place?.name}, {place?.country}
         </h3>
         <p className="text-preset-6">{formatDate(weather?.current.time)}</p>
       </div>

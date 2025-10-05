@@ -1,7 +1,8 @@
-import { useWeather } from "../hooks/useWeather";
+import { useWeatherContext } from "../hooks/useWeatherContext";
 
 const SearchBar = () => {
-  const { city, setCity, cityData, fetchWeather, searchCities } = useWeather();
+  const { city, setCity, cityData, fetchWeather, searchCities } =
+    useWeatherContext();
 
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

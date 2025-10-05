@@ -1,28 +1,17 @@
+import { useWeatherContext } from "../hooks/useWeatherContext";
 import CurrentWeatherCard from "./CurrentWeatherCard";
 import DailyForecastList from "./DailyForecastList";
 import HourlyForecastList from "./HourlyForecastList";
 import SearchBar from "./SearchBar";
 import WeatherDetailsList from "./WeatherDetailsList";
-import { useWeatherWithCoords } from "../hooks/useWeatherWithCoords";
-import { useLocation } from "../hooks/useLocation";
 
 const Main = () => {
-  const {
-    weather,
-    loading: weatherLoading,
-    error: weatherError,
-  } = useWeatherWithCoords();
-  const {
-    place,
-    loading: locationLoading,
-    error: locationError,
-  } = useLocation();
+  const { weather, place, loading, error } = useWeatherContext();
 
-  if (weatherError) return <p>{weatherError}</p>;
-  if (locationError) return <p>{locationError}</p>;
-  if (weatherLoading || locationLoading) return <p>Loading...</p>;
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>{error}</p>;
 
-  console.log(weather);
+  console.log("component rendered");
 
   return (
     <main className="mb-[clamp(3rem,1.092rem+8.142vw,5rem)]">
@@ -32,7 +21,7 @@ const Main = () => {
         </h1>
         <section aria-labelledby="forecast">
           <h2 id="forecast" className="sr-only">
-            Forecast of {place?.city} in {place?.country}
+            Forecast of {place?.name} in {place?.country}
           </h2>
           <SearchBar />
           <div className="flex flex-col md:flex-row gap-8 justify-center">

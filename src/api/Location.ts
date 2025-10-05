@@ -15,7 +15,7 @@ export async function getUserLocation(lat: number, lon: number) {
   const place = data.results[0].components;
 
   return {
-    city: place.province || "",
+    name: place.province || "",
     country: place.country || "",
   };
 }

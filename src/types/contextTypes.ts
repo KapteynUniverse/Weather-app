@@ -1,3 +1,5 @@
+import type { apiResponse } from "./apiTypes";
+
 export type City = {
   id: string;
   name: string;
@@ -6,10 +8,19 @@ export type City = {
   longitude: number;
 };
 
+export type Place = { name: string; country: string };
+
 export type WeatherContextType = {
   city: string;
-  setCity: (city: string) => void;
+  setCity: (value: string) => void;
   cityData: City[];
+  setCityData: (cities: City[]) => void;
+  searchCities: (value: string) => void;
   fetchWeather: (cityName: string) => Promise<void>;
-  searchCities: (query: string) => void;
+  coords: { lat: number; lon: number } | null;
+  weather: apiResponse | null;
+  place: Place | null;
+  loading: boolean;
+  error: string | null;
+  isDefault: boolean;
 };
