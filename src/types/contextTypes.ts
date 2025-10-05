@@ -11,11 +11,6 @@ export type City = {
 export type Place = { name: string; country: string };
 
 export type WeatherContextType = {
-  city: string;
-  setCity: (value: string) => void;
-  cityData: City[];
-  setCityData: (cities: City[]) => void;
-  searchCities: (value: string) => void;
   fetchWeather: (cityName: string) => Promise<void>;
   coords: { lat: number; lon: number } | null;
   weather: apiResponse | null;

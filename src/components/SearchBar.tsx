@@ -1,13 +1,37 @@
+import { useRef, useState } from "react";
+import { getLocationWeatherData } from "../api/Weather";
 import { useWeatherContext } from "../hooks/useWeatherContext";
+import type { City } from "../types/contextTypes";
 
 const SearchBar = () => {
-  const { city, setCity, cityData, fetchWeather, searchCities } =
-    useWeatherContext();
+  const { fetchWeather } = useWeatherContext();
+  const [localCity, setLocalCity] = useState("");
+  const [cityData, setCityData] = useState<City[]>([]);
+  const timeout = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const searchCities = (value: string) => {
+    setLocalCity(value);
+    if (!value) {
+      setCityData([]);
+      return;
+    }
+
+    if (timeout.current) clearTimeout(timeout.current);
+    timeout.current = setTimeout(async () => {
+      try {
+        const results = await getLocationWeatherData(value);
+        setCityData(results ?? []);
+      } catch (err) {
+        console.error(err);
+      }
+    }, 300);
+  };
 
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!city.trim()) return;
-    await fetchWeather(city);
+    if (!localCity.trim()) return;
+    await fetchWeather(localCity);
+    setCityData([]);
   };
 
   return (
@@ -24,7 +48,7 @@ const SearchBar = () => {
           type="search"
           placeholder="Search for a place..."
           className="bg-neutral-800 text-neutral-200 rounded-xl w-full px-6 py-4"
-          value={city}
+          value={localCity}
           onChange={(e) => searchCities(e.target.value)}
         />
         {cityData.length > 0 && (
@@ -33,7 +57,9 @@ const SearchBar = () => {
               <li key={c.id}>
                 <button
                   className="w-full px-2 py-[0.625rem] rounded-lg cursor-pointer hover:bg-neutral-600 transition-colors flex justify-between"
-                  onClick={() => setCity(c.name)}
+                  onClick={() => {
+                    setLocalCity(c.name);
+                  }}
                 >
                   {c.name} <span>{c.admin1}</span>
                 </button>
