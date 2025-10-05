@@ -17,7 +17,7 @@ const Header = () => {
           name="units"
           id="units"
           defaultValue=""
-          className="bg-neutral-800 px-[clamp(0.625rem,0.267rem+1.527vw,1rem)] py-[clamp(0.5rem,0.261rem+1.018vw,0.75rem)] rounded-md"
+          className="bg-neutral-800 px-[clamp(0.625rem,0.267rem+1.527vw,1rem)] py-[clamp(0.5rem,0.261rem+1.018vw,0.75rem)] rounded-md cursor-pointer"
         >
           <option value="" disabled hidden>
             Units

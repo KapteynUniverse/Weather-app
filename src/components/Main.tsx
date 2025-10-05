@@ -6,13 +6,8 @@ import WeatherDetailsList from "./WeatherDetailsList";
 import { useWeatherWithCoords } from "../hooks/useWeatherWithCoords";
 import { useLocation } from "../hooks/useLocation";
 
-console.log(
-  "Geolocationa izin verilmediği zaman sitenin gene de yüklenmesi lazım Berlin üzerinden"
-);
-
 const Main = () => {
   const {
-    coords,
     weather,
     loading: weatherLoading,
     error: weatherError,
@@ -27,9 +22,7 @@ const Main = () => {
   if (locationError) return <p>{locationError}</p>;
   if (weatherLoading || locationLoading) return <p>Loading...</p>;
 
-  console.log(coords);
   console.log(weather);
-  console.log(place);
 
   return (
     <main className="mb-[clamp(3rem,1.092rem+8.142vw,5rem)]">

@@ -5,7 +5,6 @@ type DailyForecastListProps = {
   tempMax: number;
   time: string;
   code: number;
-  unit: string;
 };
 
 const DailyForecastCard = ({
@@ -13,7 +12,6 @@ const DailyForecastCard = ({
   tempMin,
   tempMax,
   code,
-  unit,
 }: DailyForecastListProps) => {
   return (
     <article className="rounded-xl card-bg px-2.5 py-4">
@@ -27,10 +25,12 @@ const DailyForecastCard = ({
       />
       <div className="text-preset-7 flex justify-between">
         <p aria-label="Temperature">
-          {tempMax} <abbr title="Fahrenheit degrees">{unit}</abbr>
+          {tempMax}
+          <abbr title="Fahrenheit degrees">°</abbr>
         </p>
         <p aria-label="Fells Like" className="text-neutral-200">
-          {tempMin} <abbr title="Fahrenheit degrees">{unit}</abbr>
+          {tempMin}
+          <abbr title="Fahrenheit degrees">°</abbr>
         </p>
         <p className="sr-only">{code}</p>
       </div>

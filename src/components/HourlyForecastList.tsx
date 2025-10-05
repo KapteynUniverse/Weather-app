@@ -39,7 +39,7 @@ const HourlyForecastList = ({ weather }: Props) => {
         <select
           name="days"
           id="days"
-          className="px-4 py-2 rounded-lg bg-neutral-600"
+          className="px-4 py-2 rounded-lg bg-neutral-600 cursor-pointer"
         >
           <option value="sunday">Sunday</option>
           <option value="monday">Monday</option>
@@ -51,15 +51,10 @@ const HourlyForecastList = ({ weather }: Props) => {
         </select>
       </div>
 
-      <ul className="flex flex-col gap-4 max-h-[43.375rem] overflow-y-scroll">
+      <ul className="flex flex-col gap-4 max-h-[43.375rem] overflow-y-scroll -mx-[clamp(1rem,0.523rem+2.036vw,1.5rem)] px-[clamp(1rem,0.523rem+2.036vw,1.5rem)]">
         {todayHourly.map(({ time, temp, code }, index) => (
           <li key={index}>
-            <HourlyForecastCard
-              time={time}
-              temp={temp}
-              code={code}
-              unit={weather.current_units.temperature_2m}
-            />
+            <HourlyForecastCard time={time} temp={temp} code={code} />
           </li>
         ))}
       </ul>

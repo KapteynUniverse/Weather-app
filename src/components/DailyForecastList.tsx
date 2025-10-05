@@ -13,13 +13,12 @@ const DailyForecastList = ({ weather }: Props) => {
       </h4>
       <ul className="flex flex-wrap gap-4">
         {weather.daily.time.map((t, index) => (
-          <li key={index}>
+          <li key={index} className="flex-1">
             <DailyForecastCard
               time={t}
               tempMax={weather.daily.temperature_2m_max[index]}
               tempMin={weather.daily.temperature_2m_min[index]}
               code={weather.daily.weather_code[index]}
-              unit={weather.current_units.temperature_2m}
             />
           </li>
         ))}

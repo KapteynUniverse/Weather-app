@@ -26,10 +26,8 @@ const CurrentWeatherCard = ({ place, weather }: Props) => {
           height={120}
         />
         <p className="text-preset-1">
-          {weather?.current.temperature_2m}{" "}
-          <abbr title="Fahrenheit degrees">
-            {weather?.current_units.temperature_2m}
-          </abbr>
+          {weather?.current.temperature_2m}
+          <abbr title="Fahrenheit degrees">°</abbr>
         </p>
       </div>
     </div>
