@@ -92,7 +92,7 @@ body {
 }
 
 .custom-bg {
-  @apply bg-[url('./assets/images/bg-today-small.svg')] sm:bg-[url('./assets/images/bg-today-large.svg')] bg-no-repeat bg-cover bg-center;
+  @apply bg-[url('/assets/images/bg-today-small.svg')] sm:bg-[url('/assets/images/bg-today-large.svg')] bg-no-repeat bg-cover bg-center;
 }
 
 .card-bg {
