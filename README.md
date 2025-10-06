@@ -65,7 +65,7 @@ npm run dev
 5. Open http://localhost:5173 in your browser.
 
 ## 📁 Project Structure
-
+```
 public/
 ├─ assets/
 │ ├─ fonts
@@ -77,7 +77,7 @@ src/
 ├─ hooks/ # Custom React hooks
 ├─ types/ # TypeScript types
 └─ utils/ # Helper functions
-
+```
 ## 🔧 Usage
 
 Search for a city: Type a city name in the search bar and press Enter.
