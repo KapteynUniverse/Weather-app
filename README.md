@@ -52,9 +52,9 @@ npm install
 
 3. Create a .env file in the root and add your API URLs:
 
-VITE_WEATHER_API=https://api.open-meteo.com/v1/forecast
-VITE_WEATHER_LOCATION_API=https://geocoding-api.open-meteo.com/v1/search
-VITE_LOCATION_API=https://api.opencagedata.com/geocode/v1/json
+- **Weather Forecast API:** `VITE_WEATHER_API=https://api.open-meteo.com/v1/forecast`  
+- **Weather Location API:** `VITE_WEATHER_LOCATION_API=https://geocoding-api.open-meteo.com/v1/search`  
+- **Geocoding by Coordinates API:** `VITE_LOCATION_API=https://api.opencagedata.com/geocode/v1/json`
 
 4. Start the development server:
 
