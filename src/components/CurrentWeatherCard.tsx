@@ -8,7 +8,6 @@ type Props = {
 };
 
 const CurrentWeatherCard = ({ place, weather }: Props) => {
-  console.log(place);
   return (
     <div className="custom-bg rounded-[1.5rem] flex flex-col md:flex-row items-center justify-between px-6 py-20">
       <div className="text-center md:text-left">

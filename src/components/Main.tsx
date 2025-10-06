@@ -2,16 +2,15 @@ import { useWeatherContext } from "../hooks/useWeatherContext";
 import CurrentWeatherCard from "./CurrentWeatherCard";
 import DailyForecastList from "./DailyForecastList";
 import HourlyForecastList from "./HourlyForecastList";
+import Loading from "./Loading";
 import SearchBar from "./SearchBar";
 import WeatherDetailsList from "./WeatherDetailsList";
 
 const Main = () => {
   const { weather, place, loading, error } = useWeatherContext();
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <Loading />;
   if (error) return <p>{error}</p>;
-
-  console.log("component rendered");
 
   return (
     <main className="mb-[clamp(3rem,1.092rem+8.142vw,5rem)]">
