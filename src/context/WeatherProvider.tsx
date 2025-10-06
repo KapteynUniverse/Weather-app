@@ -2,7 +2,7 @@ import { useEffect, useState, type FC, type ReactNode } from "react";
 import { getLocationWeatherData, getWeatherData } from "../api/Weather";
 import { getUserLocation } from "../api/Location";
 import type { apiResponse } from "../types/apiTypes";
-import type { Place } from "../types/contextTypes";
+import type { Place, Units } from "../types/contextTypes";
 import { WeatherContext } from "./WeatherContext";
 
 export const WeatherProvider: FC<{ children: ReactNode }> = ({ children }) => {
@@ -14,6 +14,11 @@ export const WeatherProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [isDefault, setIsDefault] = useState(false);
+  const [units, setUnits] = useState<Units>({
+    temperature: "celsius",
+    speed: "kmh",
+    precipitation: "mm",
+  });
 
   const fetchWeather = async (cityName: string) => {
     try {
@@ -25,7 +30,11 @@ export const WeatherProvider: FC<{ children: ReactNode }> = ({ children }) => {
       setCoords({ lat: latitude, lon: longitude });
       setPlace({ name, country });
 
-      const data = await getWeatherData({ lat: latitude, lon: longitude });
+      const data = await getWeatherData({
+        lat: latitude,
+        lon: longitude,
+        units,
+      });
       setWeather(data);
       setError(null);
     } catch (err) {
@@ -35,7 +44,6 @@ export const WeatherProvider: FC<{ children: ReactNode }> = ({ children }) => {
     }
   };
 
-  // On mount: try geolocation
   useEffect(() => {
     const defaultCoords = { lat: 52.52, lon: 13.405 }; // Berlin
     const defaultPlace = { name: "Berlin", country: "Germany" };
@@ -44,7 +52,11 @@ export const WeatherProvider: FC<{ children: ReactNode }> = ({ children }) => {
       setIsDefault(true);
       setCoords(defaultCoords);
       setPlace(defaultPlace);
-      getWeatherData(defaultCoords)
+      getWeatherData({
+        lon: defaultCoords.lon,
+        lat: defaultCoords.lat,
+        units,
+      })
         .then(setWeather)
         .catch(console.error)
         .finally(() => setLoading(false));
@@ -60,7 +72,11 @@ export const WeatherProvider: FC<{ children: ReactNode }> = ({ children }) => {
           const userPlace = await getUserLocation(latitude, longitude);
           setPlace(userPlace);
 
-          const data = await getWeatherData({ lat: latitude, lon: longitude });
+          const data = await getWeatherData({
+            lat: latitude,
+            lon: longitude,
+            units,
+          });
           setWeather(data);
           setError(null);
         } catch (err) {
@@ -76,7 +92,12 @@ export const WeatherProvider: FC<{ children: ReactNode }> = ({ children }) => {
         setCoords(defaultCoords);
         setPlace(defaultPlace);
         try {
-          const data = await getWeatherData(defaultCoords);
+          const data = await getWeatherData({
+            lon: defaultCoords.lon,
+            lat: defaultCoords.lat,
+            units,
+          });
+
           setWeather(data);
         } catch (err) {
           console.error(err);
@@ -85,7 +106,7 @@ export const WeatherProvider: FC<{ children: ReactNode }> = ({ children }) => {
         }
       }
     );
-  }, []);
+  }, [units]);
 
   return (
     <WeatherContext.Provider
@@ -93,6 +114,8 @@ export const WeatherProvider: FC<{ children: ReactNode }> = ({ children }) => {
         coords,
         weather,
         place,
+        units,
+        setUnits,
         loading,
         error,
         isDefault,

@@ -8,7 +8,6 @@ import WeatherDetailsList from "./WeatherDetailsList";
 
 const Main = () => {
   const { weather, place, loading, error } = useWeatherContext();
-
   if (loading) return <Loading />;
   if (error) return <p>{error}</p>;
 

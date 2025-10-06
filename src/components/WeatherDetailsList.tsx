@@ -38,7 +38,7 @@ const WeatherDetailsList = ({ weather }: Props) => {
   return (
     <ul className="flex gap-[clamp(1rem,0.824rem+0.751vw,1.5rem)] flex-wrap">
       {weatherDetails.map((detail) => (
-        <li key={detail.title} className="flex-1">
+        <li key={detail.title} className="grow">
           <WeatherDetailsCard
             title={detail.title}
             value={detail.value}

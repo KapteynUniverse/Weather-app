@@ -33,7 +33,6 @@ const SearchBar = () => {
     await fetchWeather(localCity);
     setCityData([]);
   };
-
   return (
     <form
       onSubmit={handleFormSubmit}
@@ -61,7 +60,10 @@ const SearchBar = () => {
                     setLocalCity(c.name);
                   }}
                 >
-                  {c.name} <span>{c.admin1}</span>
+                  {c.name}
+                  <span>
+                    {c.admin1} - {c.country}
+                  </span>
                 </button>
               </li>
             ))}

@@ -1,3 +1,4 @@
+import { useState, useMemo } from "react";
 import type { apiResponse } from "../types/apiTypes";
 import HourlyForecastCard from "./HourlyForecastCard";
 
@@ -5,29 +6,36 @@ type Props = {
   weather: apiResponse;
 };
 
-const HourlyForecastList = ({ weather }: Props) => {
-  const now = new Date();
+const daysOfWeek = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+];
 
-  const todayHourly = weather.hourly.time
-    .map((time, index) => ({
-      time,
-      temp: weather.hourly.temperature_2m[index],
-      code: weather.hourly.weather_code[index],
-    }))
-    .filter(({ time }) => {
-      const hourDate = new Date(time);
-      return (
-        hourDate >= now &&
-        hourDate.getDate() === now.getDate() &&
-        hourDate.getMonth() === now.getMonth() &&
-        hourDate.getFullYear() === now.getFullYear()
-      );
-    });
+const HourlyForecastList = ({ weather }: Props) => {
+  const [selectedDay, setSelectedDay] = useState(new Date().getDay());
+
+  const hourlyForSelectedDay = useMemo(() => {
+    return weather.hourly.time
+      .map((time, index) => ({
+        time,
+        temp: weather.hourly.temperature_2m[index],
+        code: weather.hourly.weather_code[index],
+      }))
+      .filter(({ time }) => {
+        const hourDate = new Date(time);
+        return hourDate.getDay() === selectedDay;
+      });
+  }, [weather, selectedDay]);
 
   return (
     <section
       aria-labelledby="hourly-forecast"
-      className="bg-neutral-800 rounded-[1.5rem] px-[clamp(1rem,0.523rem+2.036vw,1.5rem)] py-[clamp(1.25rem,1.011rem+1.018vw,1.5rem)]"
+      className="bg-neutral-800 rounded-[1.5rem] px-[clamp(1rem,0.523rem+2.036vw,1.5rem)] py-[clamp(1.25rem,1.011rem+1.018vw,1.5rem)] flex-1"
     >
       <div className="flex justify-between items-center mb-4">
         <h4 id="hourly-forecast" className="text-preset-5">
@@ -39,20 +47,20 @@ const HourlyForecastList = ({ weather }: Props) => {
         <select
           name="days"
           id="days"
-          className="px-4 py-2 rounded-lg bg-neutral-600 cursor-pointer"
+          value={selectedDay}
+          onChange={(e) => setSelectedDay(Number(e.target.value))}
+          className="px-4 py-2 w-fit rounded-lg bg-neutral-600 cursor-pointer"
         >
-          <option value="sunday">Sunday</option>
-          <option value="monday">Monday</option>
-          <option value="tuesday">Tuesday</option>
-          <option value="wednesday">Wednesday</option>
-          <option value="thursday">Thursday</option>
-          <option value="friday">Friday</option>
-          <option value="saturday">Saturday</option>
+          {daysOfWeek.map((day, index) => (
+            <option key={index} value={index}>
+              {day}
+            </option>
+          ))}
         </select>
       </div>
 
-      <ul className="flex flex-col gap-4 max-h-[43.375rem] overflow-y-auto -mx-[clamp(1rem,0.523rem+2.036vw,1.5rem)] px-[clamp(1rem,0.523rem+2.036vw,1.5rem)]">
-        {todayHourly.map(({ time, temp, code }, index) => (
+      <ul className="flex flex-col gap-4 max-h-[36.75rem] overflow-y-auto -mx-[clamp(1rem,0.523rem+2.036vw,1.5rem)] px-[clamp(1rem,0.523rem+2.036vw,1.5rem)] custom-scroll">
+        {hourlyForSelectedDay.map(({ time, temp, code }, index) => (
           <li key={index}>
             <HourlyForecastCard time={time} temp={temp} code={code} />
           </li>

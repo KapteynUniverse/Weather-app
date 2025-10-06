@@ -1,69 +1,120 @@
-# React + TypeScript + Vite
+# Weather App 🌤️
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, responsive weather web application built with **React**, **Tailwind CSS**, and **React Context API**. The app fetches current, hourly, and daily weather data for any location using public APIs.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
 
-## Expanding the ESLint configuration
+1. Automatically detects the user's location and shows local weather.
+2. Search weather for any city worldwide.
+3. Switch between **Metric** and **Imperial** units (temperature, wind speed, precipitation).
+4. Hourly and daily forecasts.
+5. Responsive design powered by Tailwind CSS.
+6. Custom local fonts for enhanced typography.
+7. Minimal, clean user interface.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🛠️ Tech Stack
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+- **Frontend:** React, React Context API
+- **Styling:** Tailwind CSS
+- **APIs:**
+  - [Open-Meteo Forecast API](https://api.open-meteo.com/v1/forecast)
+  - [Open-Meteo Geocoding API](https://geocoding-api.open-meteo.com/v1/search)
+  - [OpenCage Geocoding API](https://api.opencagedata.com/geocode/v1/json)
+- **Tooling:** Vite, ES Modules
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+---
+
+## 🌐 Live Demo
+
+Check out the live version of the app here:  
+[Weather App Live Demo](#)
+
+---
+
+## 📦 Installation
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/KapteynUniverse/Weather-app.git
+cd Weather-app
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+2. Install dependencies:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
 ```
+
+3. Create a .env file in the root and add your API URLs:
+
+VITE_WEATHER_API=https://api.open-meteo.com/v1/forecast
+VITE_WEATHER_LOCATION_API=https://geocoding-api.open-meteo.com/v1/search
+VITE_LOCATION_API=https://api.opencagedata.com/geocode/v1/json
+
+4. Start the development server:
+
+```bash
+npm run dev
+```
+
+5. Open http://localhost:5173 in your browser.
+
+## 📁 Project Structure
+
+public/
+├─ assets/
+│ ├─ fonts
+│ └─ images
+src/
+├─ api/ # API request functions
+├─ components/ # Reusable React components
+├─ context/ # Context providers (WeatherContext)
+├─ hooks/ # Custom React hooks
+├─ types/ # TypeScript types
+└─ utils/ # Helper functions
+
+## 🔧 Usage
+
+Search for a city: Type a city name in the search bar and press Enter.
+
+Switch units: Use the dropdown to toggle between Metric and Imperial.
+
+Automatic update: Weather data updates automatically when units or location change.
+
+Checkmarks: Selected units show a checkmark next to the option.
+
+## 🎨 Styling & Fonts
+
+Tailwind CSS for responsive and utility-first styling.
+
+Custom fonts located in public/assets/fonts:
+
+**DM Sans**
+
+**Bricolage Grotesque**
+
+```
+@font-face {
+  font-family: "DM Sans";
+  src: url("/assets/fonts/DMSans-VariableFont_opsz,wght.ttf") format("truetype");
+  font-weight: 300 500 600 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("/assets/fonts/BricolageGrotesque-VariableFont_opsz,wdth,wght.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+```
+
+## 📝 License
+
+This project is licensed under the MIT License © Asilcan Toper

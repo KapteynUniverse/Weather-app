@@ -1,5 +1,23 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "DM Sans";
+  src: url("/assets/fonts/DM_Sans/DMSans-VariableFont_opsz,wght.ttf")
+    format("truetype");
+  font-weight: 300 500 600 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("/assets/fonts/Bricolage_Grotesque/BricolageGrotesque-VariableFont_opsz,wdth,wght.ttf")
+    format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 @theme {
   /* Colors */
   --color-neutral-900: hsl(243, 96%, 9%);
@@ -17,8 +35,8 @@
   --font-dm: "DM Sans", sans-serif;
   --font-bricolage: "Bricolage Grotesque", sans-serif;
   /* Sizes */
-  --text-1: 6rem; /* 96px */
-  --text-2: 3.25rem; /* 52px */
+  --text-1: clamp(3rem, 2.143rem + 4.286vw, 6rem); /* 48 - 96px */
+  --text-2: clamp(2.5rem, 2.286rem + 1.071vw, 3.25rem); /* 40 - 52px */
   --text-3: 2rem; /* 32px */
   --text-4: 1.75rem; /* 28px */
   --text-5: 1.25rem; /* 20px */
@@ -74,7 +92,7 @@ body {
 }
 
 .custom-bg {
-  @apply bg-[url('./assets/images/bg-today-small.svg')] sm:bg-[url('./assets/images/bg-today-large.svg')] bg-no-repeat bg-cover;
+  @apply bg-[url('./assets/images/bg-today-small.svg')] sm:bg-[url('./assets/images/bg-today-large.svg')] bg-no-repeat bg-cover bg-center;
 }
 
 .card-bg {
@@ -83,4 +101,23 @@ body {
 
 abbr {
   text-decoration: none;
+}
+
+.custom-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+
+.custom-scroll::-webkit-scrollbar-track {
+  background: var(--color-neutral-700);
+  border-radius: 12px;
+}
+
+.custom-scroll::-webkit-scrollbar-thumb {
+  background: var(--color-neutral-600);
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.custom-scroll::-webkit-scrollbar-thumb:hover {
+  background: var(--color-neutral-200);
 }
