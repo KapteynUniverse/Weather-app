@@ -55,7 +55,7 @@ npm install
 - **Weather Forecast API:** `VITE_WEATHER_API=https://api.open-meteo.com/v1/forecast`
 - **Weather Location API:** `VITE_WEATHER_LOCATION_API=https://geocoding-api.open-meteo.com/v1/search`
 - **Geocoding by Coordinates API:** `VITE_LOCATION_API=https://api.opencagedata.com/geocode/v1/json`
-- **Geocoding by Coordinates API:** `VITE_API_KEY_LOCATION=your-key`
+  `VITE_API_KEY_LOCATION=your-api-key`
 
 4. Start the development server:
 
